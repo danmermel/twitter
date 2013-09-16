@@ -20,5 +20,11 @@ my_token =  res_parsed["access_token"] # grab the access token
 
 request2 = Net::HTTP::Get.new("/1.1/statuses/user_timeline.json?screen_name=desktopdan&count=10", initheader = {"Authorization" => "Bearer #{my_token}"})
 response2 = http.request(request2)
-puts response2.body
+File.open('twitter.txt', 'w') do |f| 
+  f.write(response2.body)
+end
+parsed_response = JSON.parse(response2.body)
+parsed_response.each do |x|    # loop through data array
+   puts x["text"]
+end 
 
