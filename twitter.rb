@@ -25,17 +25,17 @@ my_token =  res_parsed["access_token"] # grab the access token
 puts "my token is #{my_token}"
 # now you can go and make the ACTUAL GET request
 
-request2 = Net::HTTP::Get.new("/1.1/statuses/user_timeline.json?screen_name=desktopdan&count=1", initheader = {"Authorization" => "Bearer #{my_token}"})
+request2 = Net::HTTP::Get.new("/1.1/statuses/user_timeline.json?screen_name=glynn_bird&count=1", initheader = {"Authorization" => "Bearer #{my_token}"})
 
 while true do
    response2 = http.request(request2)
    parsed_response = JSON.parse(response2.body)
    parsed_response.each do |x|    # loop through data array
-      if x["text"] == "on" then
+      if x["text"].downcase == "ledon" then
          puts "turning on" 
          row.on
          col.on
-      elsif x["text"] == "off" then
+      elsif x["text"].downcase == "ledoff" then
          puts "turning off"
          row.off
          col.off
@@ -43,6 +43,6 @@ while true do
       end
    end
    puts "waiting for a minute"
-   sleep 60 
+   sleep 30 
 end
 
