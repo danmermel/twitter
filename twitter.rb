@@ -15,7 +15,7 @@ http.use_ssl = true
 http.verify_mode = OpenSSL::SSL::VERIFY_NONE  #don't verify the SSL certificate
 #now create http post object
 request = Net::HTTP::Post.new("/oauth2/token", initheader = {"Content-Type" => "application/x-www-form-urlencoded;charset=UTF-8", 
-                                                             "Authorization" => 'Basic aXpVZGNlYjdtTDdYSTlhUktTR3ZkQTpzQ09lcWVWMUl3TlJ2NlNHYklNbnRRR3lzem5PcnRQMVVtcUpNdFFRN3c='
+                                                             "Authorization" => 'Basic <YOUR_TOKEN_HERE>'
                                                              })
 request.body = "grant_type=client_credentials"
 response = http.request(request)   # make the call
